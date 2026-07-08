@@ -1,0 +1,1082 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Daniel Oyewole — Full-Stack Developer</title>
+  <meta name="description"
+    content="Daniel Oyewole — Full-Stack Developer building resilient systems for scale. Based in Lagos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F7F6F3;
+      --ink: #111111;
+      --ink-soft: #2b2b2b;
+      --mute: #6b6b66;
+      --rule: #d9d6cf;
+      --accent: #4A6FA5;
+      --max: 1180px;
+      --gutter: clamp(20px, 5vw, 64px);
+      --display: "Syne", ui-sans-serif, system-ui, sans-serif;
+      --body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+      --mono: "DM Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    ::selection {
+      background: var(--ink);
+      color: var(--bg)
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--gutter)
+    }
+
+    /* Top bar */
+    header.top {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(247, 246, 243, .85);
+      backdrop-filter: saturate(140%) blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 18px;
+      padding-bottom: 18px;
+    }
+
+    .mark {
+      font-family: var(--display);
+      font-weight: 700;
+      letter-spacing: -.01em
+    }
+
+    .mark span {
+      color: var(--accent)
+    }
+
+    nav.primary {
+      display: flex;
+      gap: 28px;
+      font-family: var(--mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--mute)
+    }
+
+    nav.primary a:hover {
+      color: var(--ink)
+    }
+
+    @media (max-width:640px) {
+      nav.primary {
+        display: none
+      }
+    }
+
+    /* Section frame with right-aligned tag */
+    section {
+      padding: clamp(72px, 11vw, 140px) 0;
+      border-bottom: 1px solid var(--rule)
+    }
+
+    .sec-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .sec-head h2 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(28px, 3.4vw, 40px);
+      letter-spacing: -.02em;
+      margin: 0;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--mute);
+      white-space: nowrap;
+    }
+
+    /* Hero */
+    .hero {
+      padding: clamp(64px, 10vw, 120px) 0 clamp(56px, 8vw, 96px);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 0;
+      padding-left: max(var(--gutter), calc((100% - var(--max)) / 2 + var(--gutter)));
+    }
+
+    .hero-text {
+      padding-right: clamp(24px, 4vw, 64px);
+      min-width: 0;
+    }
+
+    .hero-photo {
+      width: clamp(200px, 25vw, 360px);
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      box-shadow: -24px 0 80px -8px rgba(0, 0, 0, .18), 0 0 0 5px rgba(255, 255, 255, .08);
+      margin-right: clamp(24px, 4vw, 56px);
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform .6s ease;
+    }
+
+    .hero-photo:hover img {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 640px) {
+      .hero-photo {
+        display: none;
+      }
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin-bottom: 36px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .eyebrow .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 20%, transparent)
+    }
+
+    h1.name {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(40px, 7.5vw, 104px);
+      line-height: .95;
+      letter-spacing: -.035em;
+      margin: 0 0 24px -0.05em;
+    }
+
+
+    .role {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: clamp(20px, 2.4vw, 28px);
+      letter-spacing: -.01em;
+      color: var(--ink-soft);
+      max-width: 32ch;
+      margin: 0;
+    }
+
+    .role .sep {
+      color: var(--mute);
+      margin: 0 .5ch
+    }
+
+    .caret {
+      display: inline-block;
+      width: .55ch;
+      height: 1em;
+      vertical-align: -.12em;
+      background: var(--accent);
+      margin-left: .18ch;
+      animation: blink 1.05s steps(1) infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0
+      }
+    }
+
+    .hero-meta {
+      margin-top: 56px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px 28px;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--mute);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      padding: 8px 14px;
+      color: var(--ink);
+      background: transparent;
+    }
+
+    .pill .pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #3b9a5f;
+      position: relative;
+    }
+
+    .pill .pulse::after {
+      content: "";
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 1px solid #3b9a5f;
+      opacity: .4;
+      animation: pulse 2.2s ease-out infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(.6);
+        opacity: .6
+      }
+
+      100% {
+        transform: scale(1.4);
+        opacity: 0
+      }
+    }
+
+    /* About */
+    .about-body {
+      max-width: 62ch;
+      font-size: clamp(19px, 1.8vw, 22px);
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+
+    .about-body p {
+      margin: 0 0 1em
+    }
+
+    .about-body p:last-child {
+      margin: 0
+    }
+
+    /* Stack */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--rule);
+    }
+
+    @media (max-width:820px) {
+      .stack-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    .stack-col {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--rule);
+      border-right: 1px solid var(--rule);
+      padding-right: 24px;
+      padding-left: 0;
+    }
+
+    .stack-col:nth-child(4n) {
+      border-right: none
+    }
+
+    .stack-col h3 {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin: 0 0 14px;
+      font-weight: 500;
+    }
+
+    .stack-col ul {
+      list-style: none;
+      margin: 0;
+      padding: 0
+    }
+
+    .stack-col li {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 18px;
+      letter-spacing: -.01em;
+      padding: 6px 0;
+      color: var(--ink);
+    }
+
+    .stack-col:nth-child(n+5) {
+      padding-top: 28px
+    }
+
+    /* Work */
+    .work-list {
+      display: grid;
+      gap: 0
+    }
+
+    .project {
+      position: relative;
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 24px;
+      align-items: start;
+      padding: 32px 0;
+      border-top: 1px solid var(--rule);
+      cursor: pointer;
+      transition: padding-left .35s ease, background-color .35s ease;
+      overflow: hidden;
+    }
+
+    .project:last-child {
+      border-bottom: 1px solid var(--rule)
+    }
+
+    .project:hover {
+      padding-left: 16px
+    }
+
+    .project .idx {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--mute);
+      padding-top: 6px
+    }
+
+    .project h3 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(24px, 3vw, 34px);
+      letter-spacing: -.02em;
+      margin: 0 0 8px;
+    }
+
+    .project .desc {
+      color: var(--ink-soft);
+      max-width: 60ch;
+      margin: 0 0 16px
+    }
+
+    .project .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px
+    }
+
+    .project .tags span {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .08em;
+      color: var(--mute);
+      border: 1px solid var(--rule);
+      padding: 4px 8px;
+      border-radius: 2px;
+    }
+
+    .project .go {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--mute);
+      padding-top: 8px;
+      white-space: nowrap;
+    }
+
+    .project .go::after {
+      content: " →";
+      transition: transform .3s ease;
+      display: inline-block
+    }
+
+    .project:hover .go {
+      color: var(--accent)
+    }
+
+    .project:hover .go::after {
+      transform: translateX(4px)
+    }
+
+    .reveal {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height .5s ease, opacity .45s ease, margin-top .4s ease;
+      grid-column: 2 / 4;
+      border-left: 2px solid var(--accent);
+      padding-left: 18px;
+      color: var(--ink-soft);
+      font-size: 15px;
+      line-height: 1.65;
+      margin-top: 0;
+    }
+
+    .reveal ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .reveal li {
+      margin-bottom: 6px;
+    }
+
+    .reveal li:last-child {
+      margin-bottom: 0;
+    }
+
+    .reveal li::marker {
+      color: var(--accent);
+    }
+
+    .project:hover .reveal,
+    .project:focus-within .reveal {
+      max-height: 260px;
+      opacity: 1;
+      margin-top: 18px;
+    }
+
+    @media (max-width:640px) {
+      .project {
+        grid-template-columns: 1fr;
+        gap: 10px
+      }
+
+      .project .idx {
+        display: none
+      }
+
+      .project .go {
+        padding-top: 4px
+      }
+
+      .reveal {
+        grid-column: 1
+      }
+
+      .project:hover .reveal {
+        max-height: 400px
+      }
+    }
+
+    /* Experience */
+    .exp-list {
+      display: grid;
+      gap: 0
+    }
+
+    .exp {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 28px;
+      padding: 24px 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .exp:last-child {
+      border-bottom: 1px solid var(--rule)
+    }
+
+    .exp .years {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--mute);
+      letter-spacing: .08em;
+      padding-top: 4px
+    }
+
+    .exp h3 {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 20px;
+      letter-spacing: -.01em;
+      margin: 0 0 4px
+    }
+
+    .exp .co {
+      color: var(--mute);
+      font-size: 14px;
+      margin-bottom: 8px
+    }
+
+    .exp p {
+      margin: 0;
+      color: var(--ink-soft);
+      max-width: 60ch
+    }
+
+    .exp ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--ink-soft);
+      max-width: 60ch;
+    }
+
+    .exp li {
+      margin-bottom: 6px;
+    }
+
+    .exp li:last-child {
+      margin-bottom: 0;
+    }
+
+    .exp li::marker {
+      color: var(--accent);
+    }
+
+    @media (max-width:640px) {
+      .exp {
+        grid-template-columns: 1fr;
+        gap: 6px
+      }
+    }
+
+    /* Writing */
+    .writes {
+      display: grid;
+      gap: 0
+    }
+
+    .write {
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      gap: 24px;
+      align-items: baseline;
+      padding: 22px 0;
+      border-top: 1px solid var(--rule);
+      transition: padding-left .3s ease;
+    }
+
+    .write:last-child {
+      border-bottom: 1px solid var(--rule)
+    }
+
+    .write:hover {
+      padding-left: 12px
+    }
+
+    .write .kind {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: var(--mute)
+    }
+
+    .write h3 {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 20px;
+      letter-spacing: -.01em;
+      margin: 0
+    }
+
+    .write .date {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--mute)
+    }
+
+    @media (max-width:640px) {
+      .write {
+        grid-template-columns: 1fr;
+        gap: 4px
+      }
+
+      .write .date {
+        order: -1
+      }
+    }
+
+    /* Contact */
+    .contact {
+      padding-bottom: clamp(80px, 12vw, 160px)
+    }
+
+    .email {
+      display: inline-block;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(40px, 8vw, 96px);
+      letter-spacing: -.035em;
+      line-height: 1;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 6px;
+      margin: 8px 0 48px;
+      transition: color .25s ease, border-color .25s ease;
+    }
+
+    .email:hover {
+      color: var(--accent);
+      border-color: var(--accent)
+    }
+
+    .socials {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--mute)
+    }
+
+    .socials a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--mute)
+    }
+
+    .socials a:hover {
+      color: var(--ink)
+    }
+
+    .socials svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.6
+    }
+
+    footer {
+      padding: 28px 0 40px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--mute);
+    }
+
+    /* Reveal on scroll */
+    .fade {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity .8s ease, transform .8s ease
+    }
+
+    .fade.in {
+      opacity: 1;
+      transform: none
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important
+      }
+
+      .fade {
+        opacity: 1;
+        transform: none
+      }
+
+      html {
+        scroll-behavior: auto
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="top">
+    <div class="wrap top-row">
+      <a href="#top" class="mark">Daniel Oyewole<span>.</span></a>
+      <nav class="primary" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#stack">Stack</a>
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <section class="hero" aria-labelledby="hero-name">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="eyebrow fade"><span class="dot"></span> Portfolio — Vol. 07 / 2026</div>
+          <h1 id="hero-name" class="name fade">Daniel<br />Oyewole.</h1>
+          <p class="role fade">Full-Stack Developer <span class="sep">·</span> Building for scale<span class="caret"
+              aria-hidden="true"></span></p>
+          <div class="hero-meta fade">
+            <span>Lagos, NG</span>
+            <span>UTC+1</span>
+            <span class="pill"><span class="pulse" aria-hidden="true"></span> Available for work</span>
+          </div>
+        </div>
+        <div class="hero-photo fade">
+          <img src="daniel.jpg" alt="Daniel Oyewole" />
+        </div>
+      </div>
+    </section>
+
+    <section id="about" aria-labelledby="about-h">
+      <div class="wrap">
+        <div class="sec-head fade">
+          <h2 id="about-h">A short note.</h2>
+          <span class="tag">§ 01 — About</span>
+        </div>
+        <div class="about-body fade">
+          <p>I build software the way I'd want it maintained. Small surfaces, sharp boundaries, instrumented from day
+            one. Almost half a decade across early-stage startups and industry standard fintech procedures taught me
+            that the
+            interesting work isn't in the framework; it's in the seams between systems.</p>
+          <p>I lean toward boring technology, fast feedback loops, and writing code that a teammate can delete without
+            ceremony. I care about latency, legibility, and the people on call at 3 a.m.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack" aria-labelledby="stack-h">
+      <div class="wrap">
+        <div class="sec-head fade">
+          <h2 id="stack-h">Working materials.</h2>
+          <span class="tag">§ 02 — Stack</span>
+        </div>
+        <div class="stack-grid fade">
+          <div class="stack-col">
+            <h3>Languages</h3>
+            <ul>
+              <li>TypeScript</li>
+              <li>Javascript</li>
+              <li>Bash Shell
+              <li>Powershell</li>
+              <li>SQL</li>
+            </ul>
+          </div>
+          <div class="stack-col">
+            <h3>Frameworks</h3>
+            <ul>
+              <li>React</li>
+              <li>Next.js</li>
+              <li>Node.js</li>
+              <li>FastAPI</li>
+              <li>Bootstrap</li>
+            </ul>
+          </div>
+          <div class="stack-col">
+            <h3>Data</h3>
+            <ul>
+              <li>PostgreSQL</li>
+              <li>Redis</li>
+              <li>MongoDB</li>
+              <li>Firestore</li>
+
+            </ul>
+          </div>
+          <div class="stack-col">
+            <h3>Infrastructure</h3>
+            <ul>
+              <li>Supabase</li>
+              <li>firebase</li>
+              <li>Vercel</li>
+              <li>AWS</li>
+              <li>Graffana K6</li>
+              <li>GitHub Actions</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" aria-labelledby="work-h">
+      <div class="wrap">
+        <div class="sec-head fade">
+          <h2 id="work-h">Selected work.</h2>
+          <span class="tag">§ 03 — Projects</span>
+        </div>
+        <div class="work-list fade">
+
+          <a class="project" href="#" tabindex="0">
+            <div class="idx">01 / 03</div>
+            <div>
+              <h3>LT-licensing</h3>
+              <p class="desc">Internal licensing portal for issuing, de-activation, monitoring, auditing and activating
+                licenses for Enterpise software (LTanalytics and LTbiosuite).</p>
+              <div class="tags">
+                <span>Javascript</span><span>Bootstrap</span><span>Node.js</span><span>Supabase</span><span>Vercel</span>
+              </div>
+            </div>
+            <div class="go">Case study</div>
+            <div class="reveal">
+              Directed the design and implementation of the internal licensing system, slashing network latency by over
+              20ms per round-trip time (RTT). Deployed a serverless architecture utilizing Edge Functions to execute
+              logic closer to users, minimizing network transit overhead.
+            </div>
+          </a>
+
+          <a class="project" href="#" tabindex="0">
+            <div class="idx">02 / 03</div>
+            <div>
+              <h3>Recurra</h3>
+              <p class="desc">Subscription billing platform built natively on Paystack, designed for Nigerian and
+                pan-African businesses. It handles recurring payment management, automated retry logic for failed
+                transactions, and real-time revenue analytics. Filling gaps that Paystack's native subscription tooling
+                leaves open.</p>
+              <div class="tags">
+                <span>TypeScript</span><span>Shadcn-ui</span><span>Paystack
+                  Api/webhooks</span><span>Supabase</span><span>Vercel</span>
+              </div>
+            </div>
+            <div class="go">Case study</div>
+            <div class="reveal">
+              <ul>
+                <li>Built the data pipeline that securely pulls and syncs transaction data from the
+                  Paystack API, powering a real-time analytics dashboard for MRR, churn, and subscriber metrics.</li>
+                <li>Engineered an automated retry system for failed subscription charges using scheduled
+                  cron jobs, recovering revenue that Paystack's native billing leaves unhandled</li>
+                <li>Built Recurra IQ, an AI-powered assistant trained on the platform that handles user
+                  questions and reduces support load.</li>
+              </ul>
+            </div>
+          </a>
+
+          <a class="project" href="#" tabindex="0">
+            <div class="idx">03 / 03</div>
+            <div>
+              <h3>Instant-help</h3>
+              <p class="desc">A technology-driven emergency response platform connecting people in crisis with nearby
+                helpers, responders, and instant financial support.</p>
+              <div class="tags"><span>React</span><span>Tailwind-css</span><span>Firebase</span><span>Redis</span></div>
+            </div>
+            <div class="go"></div>
+            <div class="reveal">
+              <li>Implemented a real-time geolocation system using Firebase Firestore, enabling users to share their
+                location during emergencies.</li>
+              <li>Developed a WebSocket-based notification service that alerts nearby helpers and responders to new
+                crisis alerts.</li>
+              <li>Built a secure payment integration using FlutterWave for instant fund transfers to incident
+                victims, ensuring rapid financial support during emergencies.</li>
+              <li>Implemented Redis for caching and real-time operations, optimizing system performance and
+                responsiveness under heavy load.</li>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" aria-labelledby="exp-h">
+      <div class="wrap">
+        <div class="sec-head fade">
+          <h2 id="exp-h">Experience.</h2>
+          <span class="tag">§ 04 — Timeline</span>
+        </div>
+        <div class="exp-list fade">
+          <div class="exp">
+            <div class="years">2025 — Present</div>
+            <div>
+              <h3>Software Engineer</h3>
+              <div class="co">Living Tree Consults · Remote</div>
+              <ul>
+                <li>Conducted pilot training sessions for enterprise software rollouts, onboarding end users and
+                  stakeholders</li>
+                <li>Designed and shipped internal licensing software used across the organization</li>
+                <li>Troubleshot and resolved enterprise software and installation issues, reducing downtime and support
+                  friction</li>
+              </ul>
+            </div>
+          </div>
+          <div class="exp">
+            <div class="years">2023— 2025</div>
+            <div>
+              <h3>Other Experience</h3>
+              <div class="co">Various</div>
+              <p style="margin-bottom: 6px;"><strong>Hackathons</strong></p>
+              <ul style="margin-bottom: 16px;">
+                <li><b>Hackaholics 5.0 by Wema Bank</b> - Built Stellar, an AI-powered cross-platform
+                  ecosystem that seamlessly connects devices across different operating systems, enabling unified
+                  workflows, intelligent automation, and frictionless continuity. </li>
+                <li style="margin-top: 12px;"><strong>Vitalswap hackathon - Backend Engineer</strong><br>
+                  Served as the Backend Engineer during the VitalSwap Hackathon, collaborating with a cross-functional
+                  team to build a solution on top of VitalSwap's cross-border payment infrastructure.<br><br>
+                  My primary responsibility was integrating the backend with the APIs provided by VitalSwap. I developed
+                  the server-side logic to consume multiple REST endpoints, retrieve and process live financial data,
+                  and deliver structured, reliable responses to the frontend in real time.</li>
+              </ul>
+              <p style="margin-bottom: 6px;"><strong>Freelance & Contract</strong></p>
+              <ul>
+                <li><b>Service swipe</b> - a service based marketplace for australia</li>
+                <li style="margin-top: 12px;"><b>DJCP (Delta journal for clinical practice)</b> - A publication for
+                  medical doctors within delta state to share articles, journals and research to get vetted</li>
+                <li style="margin-top: 12px;"><b>Trunt</b> - A scalable e-commerce platform that enables entrepreneurs
+                  and businesses to create, manage, and grow their online stores without requiring extensive technical
+                  expertise.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="exp">
+            <div class="years">2022 — 2023</div>
+            <div>
+              <h3>IT intern</h3>
+              <div class="co">Federal medical centre · Asaba</div>
+              <p>Internship at the Federal Medical Centre, Asaba, Nigeria, working on the IT department
+                responsible for the day-to-day running of the hospital's IT infrastructure.
+                Practical experience in network administration, network protocols, hardware troubleshooting etc.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="writing" aria-labelledby="write-h">
+      <div class="wrap">
+        <div class="sec-head fade">
+          <h2 id="write-h">Writing & side work.</h2>
+          <span class="tag">§ 05 — Notes</span>
+        </div>
+        <div class="writes fade">
+          <a class="write"
+            href="https://medium.com/@dany3l/ai-removed-the-ladder-the-end-of-entry-level-tech-4f11b8106672?sharedUserId=dany3l"
+            target="_blank" rel="noopener noreferrer">
+            <span class="kind">Essay</span>
+            <h3>AI REMOVED THE LADDER: THE END OF ENTRY- LEVEL TECH</h3>
+            <span class="date">May 2026</span>
+          </a>
+          <a class="write" href="https://thestoickernel.substack.com/p/every-password-you-have-ever-created?r=5p5wtv"
+            target="_blank" rel="noopener noreferrer">
+            <span class="kind">Essay</span>
+            <h3>EVERY PASSWORD YOU HAVE EVER CREATED IS LIVING ON BORROWED TIME</h3>
+            <span class="date">Feb 2026</span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact" aria-labelledby="contact-h">
+      <div class="wrap">
+        <div class="sec-head fade">
+          <h2 id="contact-h">Let's talk.</h2>
+          <span class="tag">§ 06 — Contact</span>
+        </div>
+        <p class="fade" style="max-width:52ch;color:var(--ink-soft);margin:0 0 8px">
+          I'm always open to a thoughtful note.
+        </p>
+        <a class="email fade" href="mailto:oyewoledano@gmail.com">Send a mail</a>
+        <div class="socials fade">
+          <a href="https://github.com/de-fumble" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 19c-4 1.5-4-2-6-2.5M15 22v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 19 4.77 5.07 5.07 0 0 0 18.91 1S17.73.65 15 2.48a13.38 13.38 0 0 0-7 0C5.27.65 4.09 1 4.09 1A5.07 5.07 0 0 0 4 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 8 18.13V22" />
+            </svg>
+            GitHub
+          </a>
+          <a href="www.linkedin.com/in/daniel-oyewole-639302233" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2.5" y="2.5" width="19" height="19" rx="2" />
+              <line x1="7" y1="10" x2="7" y2="17" />
+              <circle cx="7" cy="7" r=".8" fill="currentColor" stroke="none" />
+              <path d="M11 17v-4a2.5 2.5 0 1 1 5 0v4M11 10v7" />
+            </svg>
+            LinkedIn
+          </a>
+          <a href="#" rel="noopener" aria-label="Read.cv">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="4" y="3" width="16" height="18" rx="2" />
+              <line x1="8" y1="8" x2="16" y2="8" />
+              <line x1="8" y1="12" x2="16" y2="12" />
+              <line x1="8" y1="16" x2="13" y2="16" />
+            </svg>
+            Read.cv
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="wrap">
+    <div>© 2026 Daniel Oyewole</div>
+    <div></div>
+  </footer>
+
+  <script>
+    // Fade-in on scroll
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      }
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade').forEach(el => io.observe(el));
+  </script>
+</body>
+
+</html>
